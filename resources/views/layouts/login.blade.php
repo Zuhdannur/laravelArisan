@@ -66,30 +66,30 @@
     </style>
 </head>
 <body>
-<div class="container login-container">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6 login-form-2">
-            <h3>Login</h3>
-            <form action="{{ route('login') }}" method="post">
-                @csrf
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your Email *" value="" name="email" />
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Your Password *" value="" name="password" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btnSubmit" >{{ __('Login') }}</button>
-                </div>
-                <div class="form-group">
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 login-form-2">
+                <h3>Login</h3>
+                <form action="{{ route('login') }}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Email *" value="" name="email" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Your Password *" value="" name="password" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btnSubmit" >{{ __('Login') }}</button>
+                    </div>
+                    <div class="form-group">
 
-                    <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
-                </div>
-            </form>
+                        <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </body>
 </html>
