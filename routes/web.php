@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+Route::get('logout','Auth\LoginController@logout')->name('logout');
+Route::group(['middleware'=>['auth:web']],function (){
+    Route::get('/', function () {
+        return view('pages.dashboard');
+    });
+
 });
+
+
+
+
