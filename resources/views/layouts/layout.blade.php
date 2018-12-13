@@ -22,8 +22,9 @@
     @include('partials.nav')
 
     @include('partials.sidebar')
-
-    @yield('content')
+    <div class="main-panel">
+        @yield('content')
+    </div>
 
 <script src="{{asset('assets')}}/js/core/jquery.min.js"></script>
 <script src="{{asset('assets')}}/js/core/popper.min.js"></script>
