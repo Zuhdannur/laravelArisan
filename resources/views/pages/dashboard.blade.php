@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons text-danger">PERINGATAN</i>
+                                <i class="material-icons text-danger">PERINGATA</i>
                                 <a href="#pablo">Mengalami Kerugian</a>
                             </div>
                         </div>
