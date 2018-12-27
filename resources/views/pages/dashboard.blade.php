@@ -18,7 +18,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons text-danger">warning</i>
+                                <i class="material-icons text-danger">PERINGATAN</i>
                                 <a href="#pablo">Mengalami Kerugian</a>
                             </div>
                         </div>
@@ -76,3 +76,23 @@
         </div>
     </div>
 @endsection
+@push('extras-js')
+    <script src="{{asset('assets')}}/js/plugins/bootstrap-notify.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.notify({
+                icon: "add_alert",
+                message: "Welcome {!! Auth::user()->name; !!}"
+
+            },{
+                type: 'success',
+                timer: 4000,
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                }
+            });
+
+        });
+    </script>
+@endpush
