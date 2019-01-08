@@ -8,281 +8,124 @@
 
     <title>Document</title>
 
-    <style>
-        @font-face {
-            font-family: 'Source Sans Pro';
-            font-style: normal;
-            font-weight: 200;
-            src: local('Source Sans Pro ExtraLight'), local('SourceSansPro-ExtraLight'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wlxdr.ttf) format('truetype');
-        }
-        @font-face {
-            font-family: 'Source Sans Pro';
-            font-style: normal;
-            font-weight: 300;
-            src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdr.ttf) format('truetype');
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-weight: 300;
-        }
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            color: white;
-            font-weight: 300;
-        }
-        body ::-webkit-input-placeholder {
-            /* WebKit browsers */
-            font-family: 'Source Sans Pro', sans-serif;
-            color: white;
-            font-weight: 300;
-        }
-        body :-moz-placeholder {
-            /* Mozilla Firefox 4 to 18 */
-            font-family: 'Source Sans Pro', sans-serif;
-            color: white;
-            opacity: 1;
-            font-weight: 300;
-        }
-        body ::-moz-placeholder {
-            /* Mozilla Firefox 19+ */
-            font-family: 'Source Sans Pro', sans-serif;
-            color: white;
-            opacity: 1;
-            font-weight: 300;
-        }
-        body :-ms-input-placeholder {
-            /* Internet Explorer 10+ */
-            font-family: 'Source Sans Pro', sans-serif;
-            color: white;
-            font-weight: 300;
-        }
-        .wrapper {
-            background: #50a3a2;
-            background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 400px;
-            margin-top: -200px;
-            overflow: hidden;
-        }
-        .wrapper.form-success .container h1 {
-            -webkit-transform: translateY(85px);
-            transform: translateY(85px);
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 80px 0;
-            height: 400px;
-            text-align: center;
-        }
-        .container h1 {
-            font-size: 40px;
-            transition-duration: 1s;
-            transition-timing-function: ease-in-put;
-            font-weight: 200;
-        }
-        form {
-            padding: 20px 0;
-            position: relative;
-            z-index: 2;
-        }
-        form input {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            outline: 0;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            background-color: rgba(255, 255, 255, 0.2);
-            width: 250px;
-            border-radius: 3px;
-            padding: 10px 15px;
-            margin: 0 auto 10px auto;
-            display: block;
-            text-align: center;
-            font-size: 18px;
-            color: white;
-            transition-duration: 0.25s;
-            font-weight: 300;
-        }
-        form input:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
-        form input:focus {
-            background-color: white;
-            width: 300px;
-            color: #53e3a6;
-        }
-        form button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            outline: 0;
-            background-color: white;
-            border: 0;
-            padding: 10px 15px;
-            color: #53e3a6;
-            border-radius: 3px;
-            width: 250px;
-            cursor: pointer;
-            font-size: 18px;
-            transition-duration: 0.25s;
-        }
-        form button:hover {
-            background-color: #f5f7f9;
-        }
-        .bg-bubbles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        .bg-bubbles li {
-            position: absolute;
-            list-style: none;
-            display: block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.15);
-            bottom: -160px;
-            -webkit-animation: square 25s infinite;
-            animation: square 25s infinite;
-            transition-timing-function: linear;
-        }
-        .bg-bubbles li:nth-child(1) {
-            left: 10%;
-        }
-        .bg-bubbles li:nth-child(2) {
-            left: 20%;
-            width: 80px;
-            height: 80px;
-            -webkit-animation-delay: 2s;
-            animation-delay: 2s;
-            -webkit-animation-duration: 17s;
-            animation-duration: 17s;
-        }
-        .bg-bubbles li:nth-child(3) {
-            left: 25%;
-            -webkit-animation-delay: 4s;
-            animation-delay: 4s;
-        }
-        .bg-bubbles li:nth-child(4) {
-            left: 40%;
-            width: 60px;
-            height: 60px;
-            -webkit-animation-duration: 22s;
-            animation-duration: 22s;
-            background-color: rgba(255, 255, 255, 0.25);
-        }
-        .bg-bubbles li:nth-child(5) {
-            left: 70%;
-        }
-        .bg-bubbles li:nth-child(6) {
-            left: 80%;
-            width: 120px;
-            height: 120px;
-            -webkit-animation-delay: 3s;
-            animation-delay: 3s;
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        .bg-bubbles li:nth-child(7) {
-            left: 32%;
-            width: 160px;
-            height: 160px;
-            -webkit-animation-delay: 7s;
-            animation-delay: 7s;
-        }
-        .bg-bubbles li:nth-child(8) {
-            left: 55%;
-            width: 20px;
-            height: 20px;
-            -webkit-animation-delay: 15s;
-            animation-delay: 15s;
-            -webkit-animation-duration: 40s;
-            animation-duration: 40s;
-        }
-        .bg-bubbles li:nth-child(9) {
-            left: 25%;
-            width: 10px;
-            height: 10px;
-            -webkit-animation-delay: 2s;
-            animation-delay: 2s;
-            -webkit-animation-duration: 40s;
-            animation-duration: 40s;
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-        .bg-bubbles li:nth-child(10) {
-            left: 90%;
-            width: 160px;
-            height: 160px;
-            -webkit-animation-delay: 11s;
-            animation-delay: 11s;
-        }
-        @-webkit-keyframes square {
-            0% {
-                -webkit-transform: translateY(0);
-                transform: translateY(0);
+    <script src="{{ asset('assets') }}/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {"families": ["Lato:300,400,700,900"]},
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
+                urls: ['{{ asset('assets') }}/css/fonts.min.css']
+            },
+            active: function () {
+                sessionStorage.fonts = true;
             }
-            100% {
-                -webkit-transform: translateY(-700px) rotate(600deg);
-                transform: translateY(-700px) rotate(600deg);
-            }
-        }
-        @keyframes square {
-            0% {
-                -webkit-transform: translateY(0);
-                transform: translateY(0);
-            }
-            100% {
-                -webkit-transform: translateY(-700px) rotate(600deg);
-                transform: translateY(-700px) rotate(600deg);
-            }
-        }
+        });
+    </script>
 
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/millenium.min.css">
+    <style>
+        body {
+            overflow-y: hidden;
+        }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <div class="container">
-        <h1>Welcome</h1>
-
-        <form class="form" action="{{ route('login') }}" method="post" id="form">
-            @csrf
-            <input type="email" placeholder="Email" name="email">
-            <input type="password" placeholder="Password" name="password">
-            <button type="submit" id="login-button">{{ __('Login') }}</button>
-        </form>
+<body class="login">
+<div class="wrapper wrapper-login wrapper-login-full p-0">
+    <div class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center bg-secondary-gradient">
+        <h1 class="title fw-bold text-white mb-3">Join Our Comunity</h1>
+        <p class="subtitle text-white op-7">Ayo bergabung dengan komunitas kami untuk masa depan yang lebih baik</p>
     </div>
+    <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
+        <div class="container container-login container-transparent animated fadeIn">
+            <h3 class="text-center">Sign In To Admin</h3>
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="username" class="placeholder"><b>Email</b></label>
+                        <input id="email" name="email" type="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="placeholder"><b>Password</b></label>
+                        <a href="#" class="link float-right">Forget Password ?</a>
+                        <div class="position-relative">
+                            <input id="password" name="password" type="password" class="form-control" required>
+                            <div class="show-password">
+                                <i class="icon-eye"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-action-d-flex mb-3">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="rememberme">
+                            <label class="custom-control-label m-0" for="rememberme">Remember Me</label>
+                        </div>
+                        <button type="submit" class="btn btn-secondary col-md-5 float-right mt-3 mt-sm-0 fw-bold">Sign In</button>
+                    </div>
+                    <div class="login-account">
+                        <span class="msg">Don't have an account yet ?</span>
+                        <a href="#" id="show-signup" class="link">Sign Up</a>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-    <ul class="bg-bubbles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+        <div class="container container-signup container-transparent animated fadeIn">
+            <h3 class="text-center">Sign Up</h3>
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="fullname" class="placeholder"><b>Fullname</b></label>
+                    <input id="fullname" name="fullname" type="text" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="placeholder"><b>Email</b></label>
+                    <input id="email" name="email" type="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="passwordsignin" class="placeholder"><b>Password</b></label>
+                    <div class="position-relative">
+                        <input id="passwordsignin" name="passwordsignin" type="password" class="form-control" required>
+                        <div class="show-password">
+                            <i class="icon-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmpassword" class="placeholder"><b>Confirm Password</b></label>
+                    <div class="position-relative">
+                        <input id="confirmpassword" name="confirmpassword" type="password" class="form-control"
+                               required>
+                        <div class="show-password">
+                            <i class="icon-eye"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-sub m-0">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" name="agree" id="agree">
+                        <label class="custom-control-label" for="agree">I Agree the terms and conditions.</label>
+                    </div>
+                </div>
+                <div class="row form-action">
+                    <div class="col-md-6">
+                        <a href="#" id="show-signin" class="btn btn-danger btn-link w-100 fw-bold">Cancel</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="btn btn-secondary w-100 fw-bold">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 </body>
-<script src="{{asset('assets')}}/js/core/jquery.min.js"></script>
-<script>
-    $("#login-button").click(function(event){
-        event.preventDefault();
-        $("form").submit();
-        $('form').fadeOut(500);
-        $('.wrapper').addClass('form-success');
-    });
-</script>
+<script src="{{ asset('assets') }}/js/core/jquery.3.2.1.min.js"></script>
+<script src="{{ asset('assets') }}/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
+<script src="{{ asset('assets') }}/js/core/bootstrap.min.js"></script>
+<script src="{{ asset('assets') }}/js/millenium.min.js"></script>
 </html>
