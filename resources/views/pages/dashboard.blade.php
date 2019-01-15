@@ -4,129 +4,66 @@
     <div class="content">
         <div class="panel-header bg-secondary-gradient">
             <div class="page-inner pt-5 pb-5">
-                <h2 class="text-white pb-2">Welcome back Hizrian!</h2>
-                <h5 class="text-white op-7 mb-2">Yesterday I was clever, so I wanted to change the world. Today I am
-                    wise, so I am changing myself.</h5>
+                <h2 class="text-white pb-2">Welcome back {{ Auth::user()->name }}</h2>
+                <h5 class="text-white op-7 mb-2">Toko Kue</h5>
             </div>
         </div>
         <div class="page-inner mt--5">
             <div class="row row-card-no-pd mt--2">
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="flaticon-chart-pie text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Number</p>
-                                        <h4 class="card-title">150GB</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col">
+                    <div id="chart-container" class="h-50">
+                        <canvas id="lineChart"></canvas>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="flaticon-coins text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Revenue</p>
-                                        <h4 class="card-title">$ 1,345</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="flaticon-error text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Errors</p>
-                                        <h4 class="card-title">23</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="flaticon-twitter text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Followers</p>
-                                        <h4 class="card-title">+45K</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="row">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-head-row">
-                                <div class="card-title">User Statistics</div>
-                                <div class="card-tools">
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-												<span class="btn-label">
-													<i class="fa fa-pencil"></i>
-												</span>
-                                        Export
-                                    </a>
-                                    <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-												<span class="btn-label">
-													<i class="fa fa-print"></i>
-												</span>
-                                        Print
-                                    </a>
-                                </div>
-                            </div>
+                            <div class="card-title">Jadwal</div>
                         </div>
                         <div class="card-body">
-                            <div class="chart-container" style="min-height: 375px">
-                                <canvas id="statisticsChart"></canvas>
-                            </div>
-                            <div id="myChartLegend"></div>
+                            <ol class="activity-feed">
+                                <li class="feed-item feed-item-secondary">
+                                    <time class="date" datetime="9-25">Sep 25</time>
+                                    <span class="text">Responded to need <a href="#">"Volunteer opportunity"</a></span>
+                                </li>
+                                <li class="feed-item feed-item-success">
+                                    <time class="date" datetime="9-24">Sep 24</time>
+                                    <span class="text">Added an interest <a href="#">"Volunteer Activities"</a></span>
+                                </li>
+                                <li class="feed-item feed-item-info">
+                                    <time class="date" datetime="9-23">Sep 23</time>
+                                    <span class="text">Joined the group <a
+                                                href="single-group.php">"Boardsmanship Forum"</a></span>
+                                </li>
+                                <li class="feed-item feed-item-warning">
+                                    <time class="date" datetime="9-21">Sep 21</time>
+                                    <span class="text">Responded to need <a href="#">"In-Kind Opportunity"</a></span>
+                                </li>
+                                <li class="feed-item feed-item-danger">
+                                    <time class="date" datetime="9-18">Sep 18</time>
+                                    <span class="text">Created need <a href="#">"Volunteer Opportunity"</a></span>
+                                </li>
+                                <li class="feed-item">
+                                    <time class="date" datetime="9-17">Sep 17</time>
+                                    <span class="text">Attending the event <a
+                                                href="single-event.php">"Some New Event"</a></span>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <div class="card-title">Daily Sales</div>
+                            <div class="card-title">Penjualan Bulan Ini</div>
                             <div class="card-category">March 25 - April 02</div>
                         </div>
                         <div class="card-body pb-0">
                             <div class="mb-4 mt-2">
-                                <h1>$4,578.58</h1>
+                                <h1>Rp 4,578.58</h1>
                             </div>
                             <div class="pull-in">
                                 <canvas id="dailySalesChart"></canvas>
@@ -146,8 +83,8 @@
                     <div class="card">
                         <div class="card-body pb-0">
                             <div class="h1 fw-bold float-right text-primary">+5%</div>
-                            <h2 class="mb-2">17</h2>
-                            <p class="text-muted">Users online</p>
+                            <h2 class="mb-2">Rp 17.000,-</h2>
+                            <p class="text-muted">Pendapatan Bulanan</p>
                             <div class="pull-in sparkline-fix">
                                 <div id="lineChart"></div>
                             </div>
@@ -158,8 +95,8 @@
                     <div class="card">
                         <div class="card-body pb-0">
                             <div class="h1 fw-bold float-right text-danger">-3%</div>
-                            <h2 class="mb-2">27</h2>
-                            <p class="text-muted">New Users</p>
+                            <h2 class="mb-2">Rp 20.000,-</h2>
+                            <p class="text-muted">Pengeluaran Bulanan</p>
                             <div class="pull-in sparkline-fix">
                                 <div id="lineChart2"></div>
                             </div>
@@ -604,9 +541,55 @@
     </div>
 @endsection
 @push('extras-js')
-    <script src="{{asset('assets')}}/js/plugins/bootstrap-notify.js"></script>
+    <script src="{{ asset('assets') }}/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugin/chart.js/chart.min.js"></script>
     <script>
         $(document).ready(function () {
+            var lineChart = document.getElementById('lineChart').getContext('2d');
+            var myLineChart = new Chart(lineChart, {
+                type: 'line',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "Statistik Keuangan",
+                        borderColor: "#1d7af3",
+                        pointBorderColor: "#FFF",
+                        pointBackgroundColor: "#1d7af3",
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 4,
+                        pointHoverBorderWidth: 1,
+                        pointRadius: 4,
+                        backgroundColor: 'transparent',
+                        fill: true,
+                        borderWidth: 2,
+                        data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 900]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 10,
+                            fontColor: '#1d7af3',
+                        }
+                    },
+                    tooltips: {
+                        bodySpacing: 4,
+                        mode: "nearest",
+                        intersect: 0,
+                        position: "nearest",
+                        xPadding: 10,
+                        yPadding: 10,
+                        caretPadding: 10
+                    },
+                    layout: {
+                        padding: {left: 15, right: 15, top: 15, bottom: 15}
+                    }
+                }
+            });
+
             $.notify({
                 icon: "add_alert",
                 message: "Welcome {!! Auth::user()->name; !!}"

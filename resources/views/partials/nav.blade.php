@@ -168,8 +168,8 @@
                                     <div class="user-box">
                                         <div class="avatar-lg"><img src="https://via.placeholder.com/50x50" alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4>Hizrian</h4>
-                                            <p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                            <h4>{{ Auth::user()->name }}</h4>
+                                            <p class="text-muted">{{ Auth::user()->email }}</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                         </div>
                                     </div>
                                 </li>
@@ -181,7 +181,13 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Account Setting</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Logout</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout
+
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </li>
                             </div>
                         </ul>
