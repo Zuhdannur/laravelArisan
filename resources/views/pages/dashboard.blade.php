@@ -27,11 +27,11 @@
                             <ol class="activity-feed">
                                 <li class="feed-item feed-item-secondary">
                                     <time class="date" datetime="9-25">Sep 25</time>
-                                    <span class="text">Responded to need <a href="#">"Volunteer opportunity"</a></span>
+                                    <span class="text">Membeli Bahan Baku<a href="#">" Barang "</a></span>
                                 </li>
                                 <li class="feed-item feed-item-success">
                                     <time class="date" datetime="9-24">Sep 24</time>
-                                    <span class="text">Added an interest <a href="#">"Volunteer Activities"</a></span>
+                                    <span class="text">Mengaji  <a href="#">" Pegawai "</a></span>
                                 </li>
                                 <li class="feed-item feed-item-info">
                                     <time class="date" datetime="9-23">Sep 23</time>

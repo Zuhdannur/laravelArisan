@@ -17,6 +17,7 @@ Route::group(['middleware'=>['auth:web']],function (){
     Route::get('/', function () {
         return view('pages.dashboard');
     });
+    Route::resource('/pendapatan','PendapatanController');
 });
 
 

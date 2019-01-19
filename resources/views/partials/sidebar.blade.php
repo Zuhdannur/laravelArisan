@@ -37,11 +37,12 @@
                 </div>
             </div>
             <ul class="nav nav-secondary">
-                <li class="nav-item active">
-                    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                <li class="nav-item">
+                    <a href="{{ url('/') }}">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
+
                 </li>
                 <li class="nav-section">
 							<span class="sidebar-mini-icon">
@@ -57,7 +58,7 @@
                     <div class="collapse" id="penerimaan">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="forms/forms.html">
+                                <a href="{{ url('/pendapatan') }}">
                                     <span class="sub-item">Pendapatan Harian</span>
                                 </a>
                             </li>
@@ -91,32 +92,6 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#maps">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Jadwal</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="maps">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="maps/googlemaps.html">
-                                    <span class="sub-item">Mengelola Jadwal</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="maps/fullscreenmaps.html">
-                                    <span class="sub-item">Full Screen Maps</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="maps/jqvmap.html">
-                                    <span class="sub-item">JQVMap</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
                     <a data-toggle="collapse" href="#charts">
                         <i class="far fa-chart-bar"></i>
                         <p>Kepegawaian</p>
@@ -135,14 +110,14 @@
                 <li class="nav-item">
                     <a href="calendar.html">
                         <i class="far fa-calendar-alt"></i>
-                        <p>Calendar</p>
+                        <p>Jadwal</p>
                         <span class="badge badge-info">1</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="widgets.html">
                         <i class="fas fa-desktop"></i>
-                        <p>Widgets</p>
+                        <p>Barang</p>
                         <span class="badge badge-success">4</span>
                     </a>
                 </li>
