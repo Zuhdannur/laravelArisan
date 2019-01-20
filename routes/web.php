@@ -18,6 +18,8 @@ Route::group(['middleware'=>['auth:web']],function (){
         return view('pages.dashboard');
     });
     Route::resource('/pendapatan','PendapatanController');
+    Route::resource('/barang','BarangController');
+    Route::resource('/jadwal','JadwalController');
 });
 
 

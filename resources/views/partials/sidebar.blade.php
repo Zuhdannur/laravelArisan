@@ -108,14 +108,14 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="calendar.html">
+                    <a href="{{ url('/jadwal') }}">
                         <i class="far fa-calendar-alt"></i>
                         <p>Jadwal</p>
                         <span class="badge badge-info">1</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="widgets.html">
+                    <a href="{{ url('/barang') }}">
                         <i class="fas fa-desktop"></i>
                         <p>Barang</p>
                         <span class="badge badge-success">4</span>
