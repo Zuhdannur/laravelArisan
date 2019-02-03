@@ -15,6 +15,7 @@ class CreateTblUsaha extends Migration
     {
         Schema::create('tbl_usaha', function (Blueprint $table) {
             $table->increments('id_usaha');
+            $table->integer('id_user')->lenght(11)->unsigned();
             $table->string('nama_toko',100);
             $table->string('deskripsi',50);
             $table->string('alamat');

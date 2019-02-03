@@ -14,12 +14,17 @@
 Auth::routes();
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::group(['middleware'=>['auth:web']],function (){
-    Route::get('/', function () {
-        return view('pages.dashboard');
-    });
+
+    Route::resource('/', 'DashboardController');
+
     Route::resource('/pendapatan','PendapatanController');
+
     Route::resource('/barang','BarangController');
+    Route::get('/barang/data/getData','BarangController@getData');
+
     Route::resource('/jadwal','JadwalController');
 });
 
-
+Route::get('/welcome',function (){
+   return view('home');
+});

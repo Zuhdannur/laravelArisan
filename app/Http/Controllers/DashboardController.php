@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Pendapatan;
 use Illuminate\Http\Request;
-
-class PendapatanController extends Controller
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserHelp;
+use App\Toko;
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,12 @@ class PendapatanController extends Controller
      */
     public function index()
     {
-        return view('pages.pendapatan.pendapatan_view');
+        $data['value'] = \App\Helpers\User::get_toko(Auth::user()->id);
+        $data['datas'] = false;
+        if($data['value'] == ''){$data['datas']=false;}
+        else $data['datas'] = true;
+
+        return view('pages.dashboard')->with($data);
     }
 
     /**
@@ -24,8 +30,7 @@ class PendapatanController extends Controller
      */
     public function create()
     {
-        $data['barang'] = \App\Barang::all();
-        return view('pages.pendapatan.pendapatan_form')->with($data);
+
     }
 
     /**
@@ -36,16 +41,23 @@ class PendapatanController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $insert = new Toko;
+        $insert->id_user = Auth::user()->id;
+        $insert->nama_toko = $request->nama_toko;
+        $insert->deskripsi= '';
+        $insert->alamat = $request->alamat;
+        $insert->jenis_usaha = $request->jenis;
+        $insert->save();
+        return redirect(action('DashboardController@index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pendapatan  $pendapatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pendapatan $pendapatan)
+    public function show($id)
     {
         //
     }
@@ -53,10 +65,10 @@ class PendapatanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pendapatan  $pendapatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pendapatan $pendapatan)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +77,10 @@ class PendapatanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pendapatan  $pendapatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pendapatan $pendapatan)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +88,10 @@ class PendapatanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pendapatan  $pendapatan
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pendapatan $pendapatan)
+    public function destroy($id)
     {
         //
     }

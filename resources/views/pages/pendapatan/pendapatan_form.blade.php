@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="" id="input_pendapatan">
+                            <form action="{{ route('pendapatan.store') }}" id="input_pendapatan">
                                 <div class="repeater">
                                     <div data-repeater-list="data">
                                         <div data-repeater-item class="col-md-12 row">
@@ -43,7 +43,9 @@
                                                     <select class="form-control select2_jenis_administrasi"
                                                             name="jenis_administrasi" onchange="setBiaya(this)"
                                                              required>
-                                                        <option value=""></option>
+                                                        @foreach($barang as $value)
+                                                        <option value="{{ $barang->id_barang}}">{{ $barang->nama_barang }}</option>
+                                                            @endforeach
                                                     </select>
                                                 </div>
                                             </div>

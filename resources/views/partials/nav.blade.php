@@ -192,11 +192,7 @@
                             </div>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link quick-sidebar-toggler">
-                            <i class="fa fa-th"></i>
-                        </a>
-                    </li>
+
                 </ul>
             </div>
         </nav>

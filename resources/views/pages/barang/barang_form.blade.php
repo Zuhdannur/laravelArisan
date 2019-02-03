@@ -39,7 +39,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="" id="input_pendapatan">
+                            <form action="{{ route('barang.store') }}" method="post">
+                                @csrf
                                 <div class="d-flex justify-content-between">
                                     <div class="col-md-12">
                                         <div class="form-group row">

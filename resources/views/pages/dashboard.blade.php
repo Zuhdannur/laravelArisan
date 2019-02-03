@@ -5,9 +5,52 @@
         <div class="panel-header bg-secondary-gradient">
             <div class="page-inner pt-5 pb-5">
                 <h2 class="text-white pb-2">Welcome back {{ Auth::user()->name }}</h2>
-                <h5 class="text-white op-7 mb-2">Toko Kue</h5>
+                @if($value != '')
+                <h5 class="text-white op-7 mb-2">{{ @$value->nama_toko }}</h5>
+                    @else
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                        Buka Toko
+                    </button>
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Buka Toko</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ url('/') }}" method="post">
+                                    @csrf
+                                <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nama Toko</label>
+                                            <input type="text" class="form-control" name="nama_toko" placeholder="Masukkan Nama toko">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alamat">Alamat Toko</label>
+                                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alamat">Jenis Usaha</label>
+                                            <input type="text" class="form-control" id="alamat" name="jenis"  placeholder="Jenis Usaha ex.Makanan,Barang dll">
+                                        </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
             </div>
         </div>
+
+        @if($value != '')
         <div class="page-inner mt--5">
             <div class="row row-card-no-pd mt--2">
                 <div class="col">
@@ -538,13 +581,16 @@
                 </div>
             </div>
         </div>
+            @endif
     </div>
 @endsection
 @push('extras-js')
     <script src="{{ asset('assets') }}/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
     <script src="{{ asset('assets') }}/js/plugin/chart.js/chart.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugin/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function () {
+
             var lineChart = document.getElementById('lineChart').getContext('2d');
             var myLineChart = new Chart(lineChart, {
                 type: 'line',
