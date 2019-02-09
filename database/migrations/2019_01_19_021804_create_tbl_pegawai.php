@@ -17,8 +17,8 @@ class CreateTblPegawai extends Migration
             $table->increments('id_pegawai');
             $table->integer('id_toko')->lenght(11)->unsigned();
             $table->integer('id_user');
-            $table->string('jabatan');
-            $table->integer('gaji')->lenght(20)->unsigned();
+            $table->string('jabatan')->nullable();
+            $table->integer('gaji')->lenght(20)->unsigned()->nullable();
         });
     }
 

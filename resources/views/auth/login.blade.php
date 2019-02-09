@@ -103,6 +103,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">You As ?</label>
+                        <div class="selectgroup w-100">
+                            <label class="selectgroup-item">
+                                <input type="radio" name="type" value="pegawai" class="selectgroup-input" checked="">
+                                <span class="selectgroup-button">Pegawai</span>
+                            </label>
+                            <label class="selectgroup-item">
+                                <input type="radio" name="type" value="pemilik" class="selectgroup-input">
+                                <span class="selectgroup-button">Pemilik Toko</span>
+                            </label>
+                        </div>
+                    </div>
                     <div class="row form-sub m-0">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" name="agree" id="agree">

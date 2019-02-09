@@ -15,14 +15,24 @@ Auth::routes();
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::group(['middleware'=>['auth:web']],function (){
 
+    Route::group(['middleware' => 'App\Http\Middleware\PegawaiMiddleware'], function()
+    {
+        Route::get('/','DashboardController@index_pegawai');
+        Route::post('/data/join','DashboardController@join_toko');
+    });
     Route::resource('/', 'DashboardController');
+    Route::group(['middleware' => 'App\Http\Middleware\PemilikMiddleware'], function()
+    {
+        Route::post('/data/code','DashboardController@generateCode');
 
-    Route::resource('/pendapatan','PendapatanController');
+        Route::resource('/pendapatan','PendapatanController');
 
-    Route::resource('/barang','BarangController');
-    Route::get('/barang/data/getData','BarangController@getData');
+        Route::resource('/barang','BarangController');
+        Route::get('/barang/data/getData','BarangController@getData');
 
-    Route::resource('/jadwal','JadwalController');
+        Route::resource('/jadwal','JadwalController');
+    });
+
 });
 
 Route::get('/welcome',function (){

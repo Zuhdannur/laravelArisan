@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="content">
         <div class="panel-header bg-secondary-gradient">
             <div class="page-inner pt-5 pb-5">
@@ -115,8 +116,17 @@
                     </div>
                     <div class="card card-primary bg-primary-gradient">
                         <div class="card-body">
-                            <h4 class="mb-1 fw-bold">Tasks Progress</h4>
-                            <div id="task-complete" class="chart-circle mt-4 mb-3"></div>
+                            <h4 class="mb-1 fw-bold">Invitation Code</h4>
+                            @if(@$value->invitation_code != "")
+                            <div id="task-complete" ><h4 class="display-4">{{ @$value->invitation_code  }}</h4></div>
+                                @else
+                                <form action="{{ url('/data/code') }}" method="post">
+                                    @csrf
+                                <button type="submit" class="btn btn-primary" id="btnKode">
+                                    Generate Kode
+                                </button>
+                                </form>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -592,6 +602,11 @@
         $(document).ready(function () {
 
             var lineChart = document.getElementById('lineChart').getContext('2d');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             var myLineChart = new Chart(lineChart, {
                 type: 'line',
                 data: {

@@ -19,6 +19,7 @@ class CreateTblUsaha extends Migration
             $table->string('nama_toko',100);
             $table->string('deskripsi',50);
             $table->string('alamat');
+            $table->string('invitation_code')->nullable();
             $table->string('jenis_usaha',80);
         });
     }

@@ -9,7 +9,7 @@
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
 								<span>
 									{{ Auth::user()->name }}
-									<span class="user-level">Administrator</span>
+									<span class="user-level">{{ Auth::user()->type }}</span>
 									<span class="caret"></span>
 								</span>
                     </a>
