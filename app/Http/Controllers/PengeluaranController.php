@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Pegawai;
 use Illuminate\Http\Request;
 
-class PegawaiController extends Controller
+class PengeluaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        return view('pages.pegawai.pegawai_view');
+        //
     }
 
     /**
@@ -41,10 +40,10 @@ class PegawaiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class PegawaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pegawai $pegawai)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class PegawaiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class PegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pegawai  $pegawai
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pegawai $pegawai)
+    public function destroy($id)
     {
         //
     }

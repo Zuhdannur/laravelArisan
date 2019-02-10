@@ -18,7 +18,7 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="#profile">
+                                <a href="{{ url('/profile') }}">
                                     <span class="link-collapse">My Profile</span>
                                 </a>
                             </li>
@@ -100,7 +100,7 @@
                     <div class="collapse" id="charts">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="charts/charts.html">
+                                <a href="{{ url('/pegawai') }}">
                                     <span class="sub-item">Manage Pegawai</span>
                                 </a>
                             </li>

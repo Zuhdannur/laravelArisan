@@ -14,6 +14,7 @@
 Auth::routes();
 Route::get('logout','Auth\LoginController@logout')->name('logout');
 Route::group(['middleware'=>['auth:web']],function (){
+    Route::resource('/profile','UserProfileController');
 
     Route::group(['middleware' => 'App\Http\Middleware\PegawaiMiddleware'], function()
     {
@@ -31,6 +32,9 @@ Route::group(['middleware'=>['auth:web']],function (){
         Route::get('/barang/data/getData','BarangController@getData');
 
         Route::resource('/jadwal','JadwalController');
+
+        Route::resource('/pegawai','PegawaiController');
+
     });
 
 });

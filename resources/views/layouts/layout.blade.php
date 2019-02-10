@@ -1,5 +1,5 @@
+<!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/millenium.min.css">
 </head>
 <body>
+    <div class="wrapper">
+
 
     @include('partials.nav')
 
@@ -31,7 +33,7 @@
     <div class="main-panel">
         @yield('content')
     </div>
-
+    </div>
     <script src="{{ asset('assets') }}/js/core/jquery.3.2.1.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/bootstrap.min.js"></script>
