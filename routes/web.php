@@ -28,6 +28,9 @@ Route::group(['middleware'=>['auth:web']],function (){
 
         Route::resource('/pendapatan','PendapatanController');
 
+        Route::resource('/pengeluaran','PengeluaranController');
+        Route::get('/pengeluaran/data/getData','PengeluaranController@getData');
+
         Route::resource('/barang','BarangController');
         Route::get('/barang/data/getData','BarangController@getData');
 

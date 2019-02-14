@@ -14,7 +14,7 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Pengeluaran</a>
+                        <a href="#">Daftar Pengeluaran</a>
                     </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
@@ -30,7 +30,7 @@
                         <div class="card-header">
                             <div class="d-flex">
                                 <div class="p-2"><h4 class="card-title">Pengeluaran</h4></div>
-                                <div class="ml-auto p-2"><a href="{{ route('pendapatan.create') }}" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;<span class="btn-label">Tambah Data</span></a></div>
+                                <div class="ml-auto p-2"><a href="{{ route('pengeluaran.create') }}" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;<span class="btn-label">Tambah Data</span></a></div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -40,7 +40,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Pengeluaran</th>
-                                        <th>Jumlah Uang</th>
                                         <th>Tanggal</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -60,7 +59,22 @@
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#pendapatan').DataTable({});
+            // pengeluaran/data/getData
+            $('#pendapatan').DataTable({
+                "ordering": false,
+                deferRender: true,
+                serverSide: true,
+                processing: true,
+                orderMulti: true,
+                stateSave: true,
+                ajax: {
+                    url: '{!! url('/pengeluaran/data/getData') !!}',
+                    type: 'GET',
+                    data: function (e) {
+                        return e;
+                    }
+                }
+            });
         });
     </script>
 @endpush

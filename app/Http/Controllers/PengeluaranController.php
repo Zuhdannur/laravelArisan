@@ -13,7 +13,7 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.pengeluaran.pengeluaran_view');
     }
 
     /**
@@ -23,7 +23,8 @@ class PengeluaranController extends Controller
      */
     public function create()
     {
-        //
+        $data['barang'] = \App\Barang::all();
+        return view('pages.pengeluaran.pengeluaran_form')->with($data);
     }
 
     /**
@@ -34,7 +35,58 @@ class PengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
+    }
+
+
+    public function getData(Request $request)
+    {
+        $input = $request->all();
+
+        $transaksi = \App\Transaksi::where('');
+        $length = (int)@$input['length'];
+        $start = (int)@$input['start'];
+        $search = @$input['search'];
+        $order = @$input['order'];
+
+        $data = array();
+        $count = $transaksi->count();
+
+        $data['recordsFiltered'] = $count;
+        $data['recordsTotal'] = $count;
+
+        if (!empty($search) AND !empty($search['value'])) {
+            $transaksi = $transaksi->where(function ($query) use ($search) {
+                $query->orWhere('pengeluaran', 'like', '%' . $search['value'] . '%');
+            });
+        }
+
+        $data['recordsFiltered'] = $transaksi->count();
+
+        $transaksi = $transaksi->skip($start)->take($length)->orderBy('id_transaksi');
+        $i = 1;
+        foreach ($transaksi->get() as $row) {
+            $d = [];
+            $d[] = $i++;
+            $d[] = $row->tgl;
+            $d[] = 'Rp '.number_format($row->pengeluaran, '.', ',');
+            $btn = '<div>
+                    <input type="text" name="_id" value="'. $row->id_transaksi .'" hidden>
+                    <button type="submit" class="btn btn-sm btn-danger hapus"><span class="btn-label"><i class="fa fa-trash-alt"></i> Hapus</span>
+                    </button>
+                    </div> ';
+
+            $d[] = $btn;
+            $data['data'][] = $d;
+        }
+
+        if (empty($data['data'])) {
+            $data['recordsTotal'] = $count;
+            $data['recordsFiltered'] = 0;
+            $data['aaData'] = [];
+        }
+
+        return response()->json($data);
     }
 
     /**

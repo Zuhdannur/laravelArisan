@@ -14,7 +14,7 @@
 								</span>
                     </a>
                     <div class="clearfix"></div>
-
+                    
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
@@ -79,7 +79,7 @@
                     <div class="collapse" id="tables">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="tables/tables.html">
+                                <a href="{{ url('/pengeluaran') }}">
                                     <span class="sub-item">Penegeluaran Harian</span>
                                 </a>
                             </li>
