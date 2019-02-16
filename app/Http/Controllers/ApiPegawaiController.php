@@ -11,7 +11,7 @@ class ApiPegawaiController extends Controller
 {
     public function get_token(Request $request)
     {
-        if(str_containts($request->email,'%40')){
+        if(contains($request->email,'%40')){
             $email = str_replace('%40', '@', $request->email);
             $getValue = User::where('email', $email)->get();
         if (count($getValue) > 0) {
