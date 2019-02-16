@@ -24,7 +24,7 @@ class BarangController extends Controller
     {
         $input = $request->all();
 
-        $barang = new Barang;
+        $barang = \App\Barang::where('id_toko',\App\Helpers\User::get_idToko(Auth::user()->id));
         $length = (int)@$input['length'];
         $start = (int)@$input['start'];
         $search = @$input['search'];

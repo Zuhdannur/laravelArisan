@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Toko;
+use App\Barang;
+use Carbon\Carbon;
+use App\Transaksi;
+use App\DetailTransaksi;
 use Illuminate\Support\Facades\Auth;
 
 class ApiPegawaiController extends Controller
@@ -34,6 +39,13 @@ class ApiPegawaiController extends Controller
     public function get_profile(Request $request)
     {
         $data['data'] = User::where('remember_token',$request->token)->first();
+        $data['toko'] = Toko::where('id_user',$data['data']->id)->first();
+        $data['barang'] = Barang::where('id_toko',$data['toko']->id_usaha)->get();
+        $data['pendapatan'] = Transaksi::where([['id_toko',$data['toko']->id_usaha],['tgl',$date = Carbon::today()->toDateString()]])->get();
+        $id_transaksi = 0;
+        foreach ($data['pendapatan'] as $value) {
+            $id_transaksi = $value->id_transaksi;
+        }
         if($data['data'] != ''){$data['message'] = "success";}
         else{$data['message'] ="failuer";}
         return $data;
