@@ -26,9 +26,10 @@
 <body>
     <div class="wrapper">
 
-
     @include('partials.nav')
-
+    @php
+    $value = Auth::user()->type;
+    @endphp
     @include('partials.sidebar')
     <div class="main-panel">
         @yield('content')

@@ -40,6 +40,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Pengeluaran</th>
+                                        <th>Jumlah</th>
                                         <th>Tanggal</th>
                                         <th>Aksi</th>
                                     </tr>

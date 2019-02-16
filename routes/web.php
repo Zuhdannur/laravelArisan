@@ -22,11 +22,15 @@ Route::group(['middleware'=>['auth:web']],function (){
         Route::post('/data/join','DashboardController@join_toko');
     });
     Route::resource('/', 'DashboardController');
+    Route::resource('/pendapatan','PendapatanController');
+
+    Route::post('/pendapatan/data/getPrice','PendapatanController@getPrice');
+
     Route::group(['middleware' => 'App\Http\Middleware\PemilikMiddleware'], function()
     {
         Route::post('/data/code','DashboardController@generateCode');
+        Route::get('/pendapatan/data/getData','PendapatanController@getData');
 
-        Route::resource('/pendapatan','PendapatanController');
 
         Route::resource('/pengeluaran','PengeluaranController');
         Route::get('/pengeluaran/data/getData','PengeluaranController@getData');

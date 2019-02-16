@@ -33,33 +33,25 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('pengeluaran.store') }}" id="input_pendapatan">
+                            <form action="{{ route('pengeluaran.store') }}" method="post" id="input_pendapatan">
+                                @csrf
                                 <div class="repeater">
                                     <div data-repeater-list="data">
                                         <div data-repeater-item class="col-md-12 row">
                                             <div class="form-group col-md-5">
                                                 <label for="MACOA">Nama Barang</label>
-                                                {{-- <div class="select2-input">
-                                                    <select class="form-control select2_jenis_administrasi"
-                                                            name="jenis_administrasi" onchange="setBiaya(this)"
-                                                             required>
-                                                        @foreach($barang as $value)
-                                                        <option value="{{ $value->id_barang}}">{{ $value->nama_barang }}</option>
-                                                            @endforeach
-                                                    </select>
 
-                                                </div> --}}
-                                                <input type="text" class="form-control biaya" name="biaya"
+                                                <input type="text" class="form-control nama_barang" name="nama_barang"
                                                        placeholder="Ex. Kegiatan,Barang"  required>
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label for="deskripsi">Harga</label>
                                                 <input type="text" class="form-control biaya" name="biaya"
                                                        onkeyup="setSubtotal(this)"
-                                                       placeholder=""  required readonly>
+                                                       placeholder=""  required>
                                             </div>
                                             <div class="form-group col-md-2">
-                                                <label for="MACOA">Total Terjual</label>
+                                                <label for="MACOA">Total Terbeli</label>
                                                 <input type="text" class="form-control jumlah" name="jumlah"
                                                        onkeyup="setSubtotal(this)"  required>
                                             </div>
@@ -82,7 +74,7 @@
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <div class="p-2" style="margin-top: 1%;">Total Pendapatan</div>
-                                    <div class="p-2"><input type="text" class="form-control"></div>
+                                    <div class="p-2"><input type="text" id="totalPembayaran" name="totalPembayaran" class="form-control"></div>
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <div class="p-2" style="margin-top: 1%;"><button type="submit" class="btn btn-success">Simpan</button></div>
@@ -100,6 +92,21 @@
     <script src="{{ asset('assets') }}/js/plugin/jquery.repeater.js"></script>
     <script src="{{ asset('assets') }}/js/plugin/sweetalert/sweetalert.min.js"></script>
     <script>
+        function setSubtotal(sel) {
+            var parent = $(sel).parent().parent();
+            var biaya = parent.find('.biaya').val();
+            var jumlah = parent.find('.jumlah').val();
+            var subtotal = Number(biaya) * Number(jumlah);
+            parent.find('.subtotal').val(subtotal);
+
+            // Calculate Total Pembayaran
+            totalPembayaran = 0;
+            repeaterList = $('.repeater').repeaterVal();
+            $.each(repeaterList.data, function (index, item) {
+                totalPembayaran += Number(item.subtotal)
+            });
+            $("#totalPembayaran").val(totalPembayaran)
+        }
         $(document).ready(function () {
             repeater = $('.repeater').repeater({
                 show: function () {
@@ -150,6 +157,7 @@
             });
 
 
+
             $("#input_pendapatan").validate({
                 rules: {
                     confirmpassword: {
@@ -164,5 +172,6 @@
                 },
             });
         });
+
     </script>
 @endpush

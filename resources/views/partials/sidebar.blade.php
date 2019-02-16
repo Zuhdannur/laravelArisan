@@ -83,20 +83,24 @@
                                     <span class="sub-item">Penegeluaran Harian</span>
                                 </a>
                             </li>
+                            @if($value != "pegawai")
                             <li>
                                 <a href="tables/datatables.html">
                                     <span class="sub-item">Laporan Penegeluaran Bulanan</span>
                                 </a>
                             </li>
+                                @endif
                         </ul>
                     </div>
                 </li>
+                @if($value != "pegawai")
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#charts">
                         <i class="far fa-chart-bar"></i>
                         <p>Kepegawaian</p>
                         <span class="caret"></span>
                     </a>
+
                     <div class="collapse" id="charts">
                         <ul class="nav nav-collapse">
                             <li>
@@ -107,6 +111,7 @@
                         </ul>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ url('/jadwal') }}">
                         <i class="far fa-calendar-alt"></i>
@@ -114,6 +119,7 @@
                         <span class="badge badge-info">1</span>
                     </a>
                 </li>
+                @if($value != "pegawai")
                 <li class="nav-item">
                     <a href="{{ url('/barang') }}">
                         <i class="fas fa-desktop"></i>
@@ -121,6 +127,7 @@
                         <span class="badge badge-success">4</span>
                     </a>
                 </li>
+                @endif
                 <li class="nav-section">
 							<span class="sidebar-mini-icon">
 								<i class="fa fa-ellipsis-h"></i>

@@ -31,8 +31,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-
-
         if (Auth::user()->type == "pemilik") {
             $data['value'] = \App\Helpers\User::get_toko(Auth::user()->id);
             $data['datas'] = false;

@@ -35,4 +35,5 @@ class User {
         $user = DB::table('users')->select('type')->where('id',$user_id)->first();
         return $user;
     }
+
 }

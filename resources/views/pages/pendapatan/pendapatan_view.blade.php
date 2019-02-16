@@ -60,7 +60,21 @@
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#pendapatan').DataTable({});
+            $('#pendapatan').DataTable({
+                "ordering": false,
+                deferRender: true,
+                serverSide: true,
+                processing: true,
+                orderMulti: true,
+                stateSave: true,
+                ajax: {
+                    url: '{!! url('/pendapatan/data/getData') !!}',
+                    type: 'GET',
+                    data: function (e) {
+                        return e;
+                    }
+                }
+            });
         });
     </script>
 @endpush

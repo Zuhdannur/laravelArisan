@@ -33,7 +33,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('pendapatan.store') }}" id="input_pendapatan">
+                            <form action="{{ route('pendapatan.store') }}" method="post" id="input_pendapatan">
+                                @csrf
                                 <div class="repeater">
                                     <div data-repeater-list="data">
                                         <div data-repeater-item class="col-md-12 row">
@@ -41,10 +42,10 @@
                                                 <label for="MACOA">Nama Barang</label>
                                                 <div class="select2-input">
                                                     <select class="form-control select2_jenis_administrasi"
-                                                            name="jenis_administrasi" onchange="setBiaya(this)"
+                                                            name="barang" onchange="setBiaya(this)"
                                                              required>
                                                         @foreach($barang as $value)
-                                                        <option value="{{ $barang->id_barang}}">{{ $barang->nama_barang }}</option>
+                                                        <option value="{{ $value->id_barang}}">{{ $value->nama_barang }}</option>
                                                             @endforeach
                                                     </select>
                                                 </div>
@@ -79,10 +80,10 @@
                                 </div>
                                 <div class="d-flex justify-content-end">
                                     <div class="p-2" style="margin-top: 1%;">Total Pendapatan</div>
-                                    <div class="p-2"><input type="text" class="form-control"></div>
+                                    <div class="p-2"><input type="text" id="totalPembayaran" class="form-control"></div>
                                 </div>
                                 <div class="d-flex justify-content-end">
-                                    <div class="p-2" style="margin-top: 1%;"><button type="submit" class="btn btn-success">Simpan</button></div>
+                                    <div class="p-2" style="margin-top: 1%;"><button type="submit" name="total" class="btn btn-success">Simpan</button></div>
                                 </div>
                             </form>
                         </div>
@@ -161,5 +162,42 @@
                 },
             });
         });
+        function setBiaya(sel) {
+            var parent = $(sel).parent().parent().parent();
+            var biaya = parent.find('.biaya').val();
+            var jumlah = parent.find('.jumlah').val();
+            var subtotal = Number(biaya) * Number(jumlah);
+            console.log(biaya);
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/pendapatan/data/getPrice')}}',
+                data: {'kode': sel.value, '_token': '{{csrf_token()}}'},
+                success: function (data) {
+                    var biaya = parent.find('.biaya').val(data.harga);
+                    totalPembayaran = 0;
+                    repeaterList = $('.repeater').repeaterVal();
+                    $.each(repeaterList.data, function (index, item) {
+                        totalPembayaran += Number(item.subtotal)
+                    });
+                    $("#totalPembayaran").val(totalPembayaran)
+                }
+            });
+
+        }
+        function setSubtotal(sel) {
+            var parent = $(sel).parent().parent();
+            var biaya = parent.find('.biaya').val();
+            var jumlah = parent.find('.jumlah').val();
+            var subtotal = Number(biaya) * Number(jumlah);
+            parent.find('.subtotal').val(subtotal);
+
+            // Calculate Total Pembayaran
+            totalPembayaran = 0;
+            repeaterList = $('.repeater').repeaterVal();
+            $.each(repeaterList.data, function (index, item) {
+                totalPembayaran += Number(item.subtotal)
+            });
+            $("#totalPembayaran").val(totalPembayaran)
+        }
     </script>
 @endpush
