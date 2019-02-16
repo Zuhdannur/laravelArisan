@@ -55,6 +55,16 @@ class RegisterController extends Controller
         ]);
     }
 
+
+    private function generate()
+    {
+        $letters = 'abcdefghijklmnopqrstuvwxyz';
+        $string = '';
+        for ($x = 0; $x < 3; ++$x) {
+            $string .= $letters[rand(0, 25)] . rand(0, 9);
+        }
+        return $string;
+    }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,7 +79,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'type' => $data['type']
+            'type' => $data['type'],
+            'remember_token'=>$this->generate()
         ]);
     }
 }
