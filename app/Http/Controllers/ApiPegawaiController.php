@@ -11,7 +11,9 @@ class ApiPegawaiController extends Controller
 {
     public function get_token(Request $request)
     {
-        $getValue = User::where('email', $request->email)->get();
+        if(str_containts($request->email,'%40')){
+            $email = str_replace('%40', '@', $request->email);
+            $getValue = User::where('email', $email)->get();
         if (count($getValue) > 0) {
             foreach ($getValue as $item) {
                 if (hash::check($request->password, $item->password)) {
@@ -27,6 +29,11 @@ class ApiPegawaiController extends Controller
             $data['message'] = 'Account Not Found';
         }
         return $data;
+        }
+        else{
+            return $data['message'] = 'Koplok';
+        }
+        
     }
 
     public function get_profile(Request $request)
