@@ -24,7 +24,7 @@ class ApiPegawaiController extends Controller
                 }
             }
         } else {
-            $data['message'] = 'Account Not Found';
+            $data['message'] = $request->email;
         }
         return $data;
         
