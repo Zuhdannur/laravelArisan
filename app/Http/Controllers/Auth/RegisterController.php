@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'type' => $data['type'],
-            'remember_token'=> bin2hex(random_bytes(16))
+            'remember_token'=> bin2hex(random_bytes(16)),
         ]);
     }
 }
