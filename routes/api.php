@@ -19,3 +19,4 @@ use Illuminate\Http\Request;
 
 Route::post('/getToken','ApiPegawaiController@get_token');
 Route::post('/getProfile','ApiPegawaiController@get_profile');
+Route::post('/getDetail','ApiPegawaiController@get_detail_transaksi');
