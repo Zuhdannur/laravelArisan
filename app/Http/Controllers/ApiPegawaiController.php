@@ -54,9 +54,11 @@ class ApiPegawaiController extends Controller
     public function get_detail_transaksi(Request $request) {
         $data['data'] = DetailTransaksi::where('id_transaksi',$request->id_transaksi)->get();
         foreach ($data['data'] as $key =>$value) {
-            $search = Barang::where('id_barang',$value['nama_barang'])->first()->nama_barang;
+            $search = Barang::where('id_barang',$value['nama_barang'])->first();
             if($search != ""){
-                $data['data'][$key]['nama_barang'] = $search;
+                $data['data'][$key]['nama_barang'] = $search['nama_barang'];
+            }else{
+               
             }
         }
         if(count($data['data']) > 0){
