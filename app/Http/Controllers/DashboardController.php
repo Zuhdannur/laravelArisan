@@ -35,7 +35,9 @@ class DashboardController extends Controller
         if (Auth::user()->type == "pemilik") {
             $data['value'] = \App\Helpers\User::get_toko(Auth::user()->id);
             $data['datas'] = false;
-            $data['bulan'] = $this->pendapatan_bulanan($data['value']->id_usaha);
+            if($data['value'] != ''){
+                $data['bulan'] = $this->pendapatan_bulanan($data['value']->id_usaha);
+            }
             $data['uang'] = $data['bulan']['penghasilan'];
             $data['pendapatan'] = $data['bulan']['pendapatan'];
             $data['pengeluaran'] = $data['bulan']['pengeluaran'];
