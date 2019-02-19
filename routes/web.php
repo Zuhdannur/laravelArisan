@@ -41,6 +41,7 @@ Route::group(['middleware'=>['auth:web']],function (){
         Route::resource('/jadwal','JadwalController');
 
         Route::resource('/pegawai','PegawaiController');
+        Route::get('/pegawai/data/getData','PegawaiController@getData');
 
     });
 

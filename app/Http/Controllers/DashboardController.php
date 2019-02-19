@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserHelp;
 use App\Toko;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -34,6 +35,11 @@ class DashboardController extends Controller
         if (Auth::user()->type == "pemilik") {
             $data['value'] = \App\Helpers\User::get_toko(Auth::user()->id);
             $data['datas'] = false;
+            $data['bulan'] = $this->pendapatan_bulanan($data['value']->id_usaha);
+            $data['uang'] = $data['bulan']['penghasilan'];
+            $data['pendapatan'] = $data['bulan']['pendapatan'];
+            $data['pengeluaran'] = $data['bulan']['pengeluaran'];
+            $data['jml'] = $data['bulan']['jml'];
             if ($data['value'] == '') {
                 $data['datas'] = false;
             } else $data['datas'] = true;
@@ -55,6 +61,26 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function pendapatan_bulanan($id_toko)
+    {
+        $date = Carbon::now();
+        $year = '' . $date->year;
+        $month = '' . $date->month;
+        $data['transaksi'] = \App\Transaksi::where('id_toko', $id_toko)->whereMonth('tgl', '=', $month)->get();
+        $pendapatan = 0;
+        $pengeluaran = 0;
+        foreach ($data['transaksi'] as $value) {
+            $pendapatan += $value['pendapatan'];
+            $pengeluaran += $value['pengeluaran'];
+        }
+        $data['penghasilan'] =number_format( $pendapatan - $pengeluaran,0,'.',',');
+        $data['pendapatan'] = number_format( $pendapatan,0,'.',',');
+        $data['pengeluaran'] = number_format( $pengeluaran,0,'.',',');
+        $data['jml'] = count($data['transaksi']);
+        return $data;
+    }
+
     public function create()
     {
 
@@ -63,8 +89,8 @@ class DashboardController extends Controller
 
     public function join_toko(Request $request)
     {
-        $findToko = Toko::where('invitation_code',$request->kode)->first();
-        if($findToko != ''){
+        $findToko = Toko::where('invitation_code', $request->kode)->first();
+        if ($findToko != '') {
             $insert = new \App\Pegawai;
             $insert->id_toko = $findToko->id_usaha;
             $insert->id_user = Auth::user()->id;

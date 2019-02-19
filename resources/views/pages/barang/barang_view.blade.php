@@ -102,7 +102,6 @@
                                 },
                                 success:function(data){
                                     console.log(data);
-
                                     tbl.reload.ajax();
                                 }
                             })

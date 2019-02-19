@@ -107,7 +107,7 @@
                         </div>
                         <div class="card-body pb-0">
                             <div class="mb-4 mt-2">
-                                <h1>Rp 4,578.58</h1>
+                                <h1>Rp {{ @$uang }}</h1>
                             </div>
                             <div class="pull-in">
                                 <canvas id="dailySalesChart"></canvas>
@@ -135,8 +135,8 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right text-primary">+5%</div>
-                            <h2 class="mb-2">Rp 17.000,-</h2>
+                            <div class="h1 fw-bold float-right text-primary">+0%</div>
+                            <h2 class="mb-2">Rp {{ @$pendapatan }},-</h2>
                             <p class="text-muted">Pendapatan Bulanan</p>
                             <div class="pull-in sparkline-fix">
                                 <div id="lineChart"></div>
@@ -148,7 +148,7 @@
                     <div class="card">
                         <div class="card-body pb-0">
                             <div class="h1 fw-bold float-right text-danger">-3%</div>
-                            <h2 class="mb-2">Rp 20.000,-</h2>
+                            <h2 class="mb-2">Rp {{@$pengeluaran }},-</h2>
                             <p class="text-muted">Pengeluaran Bulanan</p>
                             <div class="pull-in sparkline-fix">
                                 <div id="lineChart2"></div>
@@ -159,8 +159,8 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body pb-0">
-                            <div class="h1 fw-bold float-right text-warning">+7%</div>
-                            <h2 class="mb-2">213</h2>
+                            <div class="h1 fw-bold float-right text-warning">+0%</div>
+                            <h2 class="mb-2">{{ @$jml }}</h2>
                             <p class="text-muted">Transactions</p>
                             <div class="pull-in sparkline-fix">
                                 <div id="lineChart3"></div>

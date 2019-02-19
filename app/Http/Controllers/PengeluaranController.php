@@ -22,7 +22,7 @@ class PengeluaranController extends Controller
 
     private function getLastRow($toko_id)
     {
-        $data = Transaksi::where('id_toko', $toko_id)->orderBy('id_transaksi', 'desc')->first();
+        $data = Transaksi::where([['id_toko', $toko_id],['pengeluaran','!=','']])->orderBy('id_transaksi', 'desc')->first();
         return $data->id_transaksi;
     }
 
@@ -49,7 +49,22 @@ class PengeluaranController extends Controller
         $id_toko = User::get_toko(Auth::user()->id)->id_usaha;
         $search = Transaksi::where([['id_toko', $id_toko],['pengeluaran','!=', ''], ['tgl', $date]])->get();
         if (count($search) > 0) {
-
+            $uang = Transaksi::where([['id_toko', $id_toko],['pengeluaran','!=', ''], ['tgl', $date]])->first()->pengeluaran;
+            $total = 0;
+            foreach ($request->data as $value) {
+                $total += $value['subtotal'];
+            }
+            $saveChange = \App\Transaksi::where('id_transaksi', '=', $this->getLastRow($id_toko))->update([
+                'pengeluaran' => $uang + $total
+            ]);
+            foreach ($request->data as $value) {
+                $insert = new \App\DetailTransaksi;
+                $insert->id_transaksi = $this->getLastRow($id_toko);
+                $insert->nama_barang = $value['nama_barang'];
+                $insert->jumlah = $value['jumlah'];
+                $insert->subtotal = $value['subtotal'];
+                $insert->save();
+            }
         } else {
             $insert = new Transaksi;
             $insert->id_toko = $id_toko;
@@ -98,9 +113,9 @@ class PengeluaranController extends Controller
         foreach ($transaksi->get() as $row) {
             $d = [];
             $d[] = $i++;
-            $d[] = $row->tgl;
-            $d[] = $this->getItem($row->id_transaksi);
             $d[] = 'Rp '.number_format($row->pengeluaran, 0,'.', ',');
+            $d[] = $this->getItem($row->id_transaksi);
+            $d[] = $row->tgl;
             $btn = '<div>
                     <input type="text" name="_id" value="'. $row->id_transaksi .'" hidden>
                     <button type="submit" class="btn btn-sm btn-danger hapus"><span class="btn-label"><i class="fa fa-trash-alt"></i> Hapus</span>
@@ -168,6 +183,7 @@ class PengeluaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Transaksi::where('id_transaksi',$id)->delete();
+        return response()->json("Sukses");
     }
 }

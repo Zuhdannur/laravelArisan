@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="content">
         <div class="page-inner">
             <div class="pb-2 mt-4 mb-2">
@@ -58,10 +59,18 @@
 @endsection
 @push('extras-js')
     <script src="{{ asset('assets') }}/js/plugin/datatables/datatables.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugin/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function () {
+            var tbl;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
             // pengeluaran/data/getData
-            $('#pendapatan').DataTable({
+            tbl = $('#pendapatan').DataTable({
                 "ordering": false,
                 deferRender: true,
                 serverSide: true,
@@ -75,6 +84,46 @@
                         return e;
                     }
                 }
+            });
+            $('body').on('click','.hapus',function(e){
+                e.preventDefault();
+                var form = $(this).parent().find('input[type=text]').val();
+                swal({
+                    title: "Anda Yakin?",
+                    text: "Menghapus Data",
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: "Hapus",
+                            value: true,
+                            visible: true,
+                            className: "btn-danger",
+                            closeModal: true
+                        },
+                        cancel: {
+                            text: "Batal",
+                            value: null,
+                            visible: true,
+                            className: "",
+                            closeModal: true,
+                        }
+                    }
+                })
+                    .then((isConfirm) => {
+                        if (isConfirm) {
+                            $.ajax({
+                                type:'POST',
+                                url:'/pengeluaran/'+form,
+                                data:{
+                                    _method: 'delete'
+                                },
+                                success:function(data){
+                                    console.log(data);
+                                    tbl.reload.ajax();
+                                }
+                            })
+                        }
+                    });
             });
         });
     </script>

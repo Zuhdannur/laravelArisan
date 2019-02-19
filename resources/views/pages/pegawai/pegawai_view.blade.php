@@ -101,7 +101,19 @@
             });
 
             tbl =  $('#barang').DataTable({
-
+                "ordering": false,
+                deferRender: true,
+                serverSide: true,
+                processing: true,
+                orderMulti: true,
+                stateSave: true,
+                ajax: {
+                    url: '{!! url('/pegawai/data/getData') !!}',
+                    type: 'GET',
+                    data: function (e) {
+                        return e;
+                    }
+                }
             });
         });
     </script>

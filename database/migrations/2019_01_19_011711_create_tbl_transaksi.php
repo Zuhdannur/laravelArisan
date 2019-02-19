@@ -16,8 +16,8 @@ class CreateTblTransaksi extends Migration
         Schema::create('tbl_transaksi', function (Blueprint $table) {
             $table->increments('id_transaksi');
             $table->integer('id_toko')->lenght(11)->unsigned();
-            $table->integer('pendapatan')->lenght(20)->unsigned()->nullable();
-            $table->integer('pengeluaran')->lenght(20)->unsigned()->nullable();
+            $table->integer('pendapatan')->lenght(20)->unsigned()->default(0);
+            $table->integer('pengeluaran')->lenght(20)->unsigned()->default(0);
             $table->date('tgl')->nullable();
         });
     }

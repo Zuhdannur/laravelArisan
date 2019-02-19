@@ -54,9 +54,24 @@ class PendapatanController extends Controller
     {
         $date = Carbon::today()->toDateString();
         $id_toko = User::get_toko(Auth::user()->id)->id_usaha;
-        $search = Transaksi::where([['id_toko', $id_toko], ['tgl', $date]])->get();
+        $search = Transaksi::where([['id_toko', $id_toko],['pendapatan','!=', ''], ['tgl', $date]])->get();
         if (count($search) > 0) {
-
+            $uang = Transaksi::where([['id_toko', $id_toko],['pendapatan','!=', ''], ['tgl', $date]])->first()->pendapatan;
+            $total = 0;
+            foreach ($request->data as $value) {
+                $total += $value['subtotal'];
+            }
+            $saveChange = \App\Transaksi::where('id_transaksi', '=', $this->getLastRow($id_toko))->update([
+                'pendapatan' => $uang + $total
+            ]);
+            foreach ($request->data as $value) {
+                $insert = new \App\DetailTransaksi;
+                $insert->id_transaksi = $this->getLastRow($id_toko);
+                $insert->nama_barang = $value['barang'];
+                $insert->jumlah = $value['jumlah'];
+                $insert->subtotal = $value['subtotal'];
+                $insert->save();
+            }
         } else {
             $insert = new Transaksi;
             $insert->id_toko = $id_toko;
@@ -82,7 +97,7 @@ class PendapatanController extends Controller
 
     private function getLastRow($toko_id)
     {
-        $data = Transaksi::where('id_toko', $toko_id)->orderBy('id_transaksi', 'desc')->first();
+        $data = Transaksi::where([['id_toko', $toko_id],['pendapatan','!=','']])->orderBy('id_transaksi', 'desc')->first();
         return $data->id_transaksi;
     }
 
@@ -155,7 +170,7 @@ class PendapatanController extends Controller
         foreach ($transaksi->get() as $row) {
             $d = [];
             $d[] = $i++;
-            $d[] = 'Rp' . number_format($row->pengeluaran, 0, '.', ',');
+            $d[] = 'Rp' . number_format($row->pendapatan, 0, '.', ',');
             $d[] = $this->getItem($row->id_transaksi);
             $d[] = Carbon::parse($row->tgl)->format('Y-m-d');
             $btn = '<div>
