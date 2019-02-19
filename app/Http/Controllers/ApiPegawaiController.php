@@ -11,12 +11,11 @@ use Carbon\Carbon;
 use App\Transaksi;
 use App\DetailTransaksi;
 use Illuminate\Support\Facades\Auth;
-
 class ApiPegawaiController extends Controller
 {
     public function get_token(Request $request)
     {
-            $getValue = User::where('email', $request->email)->get();
+        $getValue = User::where('email', $request->email)->get();
         if (count($getValue) > 0) {
             foreach ($getValue as $item) {
                 if (hash::check($request->password, $item->password)) {
@@ -32,41 +31,58 @@ class ApiPegawaiController extends Controller
             $data['message'] = $request->email;
         }
         return $data;
-        
-        
+
+
     }
 
     public function get_profile(Request $request)
     {
-        $data['data'] = User::where('remember_token',$request->token)->first();
-        $data['toko'] = Toko::where('id_user',$data['data']->id)->first();
-        $data['barang'] = Barang::where('id_toko',$data['toko']->id_usaha)->get();
-        $data['pendapatan'] = Transaksi::where([['id_toko',$data['toko']->id_usaha],['tgl',$date = Carbon::today()->toDateString()]])->get();
+        $data['data'] = User::where('remember_token', $request->token)->first();
+        $data['toko'] = Toko::where('id_user', $data['data']->id)->first();
+        $data['barang'] = Barang::where('id_toko', $data['toko']->id_usaha)->get();
+        $data['pendapatan'] = Transaksi::where([['id_toko', $data['toko']->id_usaha], ['tgl', $date = Carbon::today()->toDateString()]])->get();
         $id_transaksi = 0;
         foreach ($data['pendapatan'] as $value) {
             $id_transaksi = $value->id_transaksi;
         }
-        if($data['data'] != ''){$data['message'] = "success";}
-        else{$data['message'] ="failuer";}
+        if ($data['data'] != '') {
+            $data['message'] = "success";
+        } else {
+            $data['message'] = "failuer";
+        }
         return $data;
     }
 
-    public function get_detail_transaksi(Request $request) {
-        $data['data'] = DetailTransaksi::where('id_transaksi',$request->id_transaksi)->get();
-        foreach ($data['data'] as $key =>$value) {
-            $search = Barang::where('id_barang',$value['nama_barang'])->first();
-            if($search != ""){
+    public function get_detail_transaksi(Request $request)
+    {
+        $data['data'] = DetailTransaksi::where('id_transaksi', $request->id_transaksi)->get();
+        foreach ($data['data'] as $key => $value) {
+            $search = Barang::where('id_barang', $value['nama_barang'])->first();
+            if ($search != "") {
                 $data['data'][$key]['nama_barang'] = $search['nama_barang'];
-            }else{
-               
+            } else {
+
             }
         }
-        if(count($data['data']) > 0){
+        if (count($data['data']) > 0) {
             $data['message'] = "success";
-        } 
-        else{
+        } else {
             $data['message'] = "success";
         }
+        return response()->json($data);
+    }
+
+    public function register(Request $request)
+    {
+        $insert = new User;
+        $insert->name = $request->name;
+        $insert->email = $request->email;
+        $insert->password = Hash::make($request->password);
+        $insert->type = $request->type;
+        $data['token'] = bin2hex(random_bytes(16));
+        $insert->remember_token =  $data['token'];
+        $insert->save();
+        $data['message'] = "success";
         return response()->json($data);
     }
 }
