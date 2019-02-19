@@ -37,11 +37,11 @@ class DashboardController extends Controller
             $data['datas'] = false;
             if($data['value'] != ''){
                 $data['bulan'] = $this->pendapatan_bulanan($data['value']->id_usaha);
+                $data['uang'] = $data['bulan']['penghasilan'];
+                $data['pendapatan'] = $data['bulan']['pendapatan'];
+                $data['pengeluaran'] = $data['bulan']['pengeluaran'];
+                $data['jml'] = $data['bulan']['jml'];
             }
-            $data['uang'] = $data['bulan']['penghasilan'];
-            $data['pendapatan'] = $data['bulan']['pendapatan'];
-            $data['pengeluaran'] = $data['bulan']['pengeluaran'];
-            $data['jml'] = $data['bulan']['jml'];
             if ($data['value'] == '') {
                 $data['datas'] = false;
             } else $data['datas'] = true;
