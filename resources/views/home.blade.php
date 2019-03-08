@@ -47,7 +47,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
         <div class="col-lg-12 col-md-6">
             <div class="d-flex justify-content-end">
-                <div class="p-2"><a class="btn btn-success text-white navbar-text nav-link">
+                <div class="p-2"><a class="btn btn-success text-white navbar-text nav-link" href="{{ route('login') }}">
                         <i class="fa fa-user"></i>&nbsp;&nbsp;Login
                     </a></div>
             </div>
@@ -63,10 +63,10 @@
                 <p class="lead text-gray">
                     <small class="text-muted">Dapat Kan Kemudahan Dengan Siku App Aplikasi Yang Dapat Mempermudah Hidup Anda</small>
                 </p>
-                <button style="padding: 2%;" class="btn btn-success">&nbsp<span
+                <a style="padding: 2%;" class="btn btn-success" href="{{ route('login') }}">&nbsp<span
                             class="btn-label">GET MY FREE ACCOUNT</span>&nbsp;&nbsp;<i
                             class="fa fa-arrow-alt-circle-right"></i>&nbsp
-                </button>
+                </a>
             </div>
             <div class="p-0">
                 <img src="{{ asset('assets') }}/image/background.png" class="img-fluid" width="70%" alt="Responsive image">

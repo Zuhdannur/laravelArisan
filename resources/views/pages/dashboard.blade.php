@@ -29,7 +29,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{ url('/') }}" method="post">
+                                <form action="{{ url('/dashboard') }}" method="post">
                                     @csrf
                                 <div class="modal-body">
                                         <div class="form-group">
