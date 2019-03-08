@@ -11,4 +11,8 @@ class DetailTransaksi extends Model
         'id_detail','id_transaksi','id_toko','nama_barang','jumlah'
     ];
     public $timestamps = false;
+
+    public function barang(){
+    	$this->hasOne('\App\Barang','id_barang','nama_barang');
+    }
 }

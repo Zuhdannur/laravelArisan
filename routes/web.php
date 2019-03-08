@@ -13,15 +13,20 @@
 
 Auth::routes();
 Route::get('logout','Auth\LoginController@logout')->name('logout');
+Route::get('/',function (){
+    return view('home');
+});
 Route::group(['middleware'=>['auth:web']],function (){
+
     Route::resource('/profile','UserProfileController');
 
     Route::group(['middleware' => 'App\Http\Middleware\PegawaiMiddleware'], function()
     {
-        Route::get('/','DashboardController@index_pegawai');
+        Route::get('/dashboard','DashboardController@index_pegawai');
         Route::post('/data/join','DashboardController@join_toko');
     });
-    Route::resource('/', 'DashboardController');
+
+    Route::resource('/dashboard', 'DashboardController');
     Route::resource('/pendapatan','PendapatanController');
 
     Route::post('/pendapatan/data/getPrice','PendapatanController@getPrice');

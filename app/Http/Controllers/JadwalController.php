@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Jadwal;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class JadwalController extends Controller
@@ -33,7 +35,16 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $parseDate = Carbon::parse($request->start);
+        $insert = new \App\Jadwal;
+        $insert->id_toko = \App\Helpers\User::get_toko(Auth::user()->id)->id_usaha;
+        $insert->title = $request->title;
+        $insert->start = $parseDate->format('Y-m-d');
+        $insert->end = $parseDate->format('Y-m-d');
+        $insert->allDay = 'false';
+        $insert->className = $request->className;
+        $insert->save();
+        return response()->json("Success");
     }
 
     /**

@@ -68,6 +68,7 @@ class PegawaiController extends Controller
                     <input type="text" name="_id" value="' . $row->id_pegawai . '" hidden>
                     <button type="submit" class="btn btn-sm btn-danger hapus"><span class="btn-label"><i class="fa fa-trash-alt"></i> pecat</span>
                     </button>
+                    <a href="'.url('/pegawai/'.$row->id_pegawai).'" class="btn btn-sm btn-success"><span class="btn-label"><i class="fa fa-file"></i>Edit Data</span></a>
                     </div> ';
 
             $d[] = $btn;
@@ -100,9 +101,9 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function show(Pegawai $pegawai)
+    public function show($id)
     {
-        //
+        return view('pages.pegawai.pegawai_form');
     }
 
     /**

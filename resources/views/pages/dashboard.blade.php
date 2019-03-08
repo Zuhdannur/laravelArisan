@@ -4,6 +4,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="content">
         <div class="panel-header bg-secondary-gradient">
+            @if(Auth::user()->email_verified_at == '')
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex align-items-center">
+                    <div>Tolong Verifikasi Akun Anda</div>
+                    <a class="btn btn-sm btn-success" style="margin-left: 2%;" href="{{ route('profile.index') }}">verify</a>
+                </div>
+            </div>
+            @endif
             <div class="page-inner pt-5 pb-5">
                 <h2 class="text-white pb-2">Welcome back {{ Auth::user()->name }}</h2>
                 @if($value != '')
@@ -55,8 +63,8 @@
         <div class="page-inner mt--5">
             <div class="row row-card-no-pd mt--2">
                 <div class="col">
-                    <div id="chart-container" class="h-50">
-                        <canvas id="lineChart"></canvas>
+                    <div id="chart-container">
+                        <canvas id="LineChart"></canvas>
                     </div>
                 </div>
 
@@ -68,34 +76,23 @@
                             <div class="card-title">Jadwal</div>
                         </div>
                         <div class="card-body">
+                            @if(count($jadwal) > 0)
                             <ol class="activity-feed">
-                                <li class="feed-item feed-item-secondary">
-                                    <time class="date" datetime="9-25">Sep 25</time>
-                                    <span class="text">Membeli Bahan Baku<a href="#">" Barang "</a></span>
+                                @php
+                                $class = array("feed-item-success","feed-item-secondary","feed-item-info","feed-item-warning","feed-item-danger"
+                                )
+                                @endphp
+                                @foreach($jadwal as $key=>$value)
+                                <li class="feed-item {{ $class[$key] }}">
+                                    <time class="date" datetime="9-25">{{\Carbon\Carbon::parse($value->start)->format('M d')}}</time>
+                                    <span class="text">{{ $value->title }}</span><br>
+                                    <a href="#">{{ $value->description }}</a>
                                 </li>
-                                <li class="feed-item feed-item-success">
-                                    <time class="date" datetime="9-24">Sep 24</time>
-                                    <span class="text">Mengaji  <a href="#">" Pegawai "</a></span>
-                                </li>
-                                <li class="feed-item feed-item-info">
-                                    <time class="date" datetime="9-23">Sep 23</time>
-                                    <span class="text">Joined the group <a
-                                                href="single-group.php">"Boardsmanship Forum"</a></span>
-                                </li>
-                                <li class="feed-item feed-item-warning">
-                                    <time class="date" datetime="9-21">Sep 21</time>
-                                    <span class="text">Responded to need <a href="#">"In-Kind Opportunity"</a></span>
-                                </li>
-                                <li class="feed-item feed-item-danger">
-                                    <time class="date" datetime="9-18">Sep 18</time>
-                                    <span class="text">Created need <a href="#">"Volunteer Opportunity"</a></span>
-                                </li>
-                                <li class="feed-item">
-                                    <time class="date" datetime="9-17">Sep 17</time>
-                                    <span class="text">Attending the event <a
-                                                href="single-event.php">"Some New Event"</a></span>
-                                </li>
+                                @endforeach
                             </ol>
+                                @else
+                                <p>BELUM PUNYA JADWAL</p>
+                                @endif
                         </div>
                     </div>
                 </div>
@@ -601,7 +598,7 @@
     <script>
         $(document).ready(function () {
 
-            var lineChart = document.getElementById('lineChart').getContext('2d');
+            var lineChart = document.getElementById('LineChart').getContext('2d');
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -43,7 +43,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -54,10 +54,11 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'confirmed'],
         ]);
     }
+
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\User
      */
 
@@ -69,7 +70,15 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'type' => $data['type'],
-            'remember_token'=> bin2hex(random_bytes(16)),
+            'remember_token' => bin2hex(random_bytes(16)),
         ]);
+
     }
+
+    public function get_last_row()
+    {
+        $data = User::orderBy('id_detail_user','desc')->first()->id_user;
+        return $data;   
+    }
+
 }

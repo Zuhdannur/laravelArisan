@@ -25,7 +25,7 @@ class DashboardController extends Controller
 //
 //        });
 //
-//
+//x
 //
 //    }
 
@@ -41,6 +41,7 @@ class DashboardController extends Controller
                 $data['pendapatan'] = $data['bulan']['pendapatan'];
                 $data['pengeluaran'] = $data['bulan']['pengeluaran'];
                 $data['jml'] = $data['bulan']['jml'];
+                $data['jadwal'] = \App\Jadwal::where('id_toko',$data['value']->id_usaha)->orderBy('start','desc')->skip(0)->take(6)->get();
             }
             if ($data['value'] == '') {
                 $data['datas'] = false;
@@ -56,7 +57,6 @@ class DashboardController extends Controller
         }
 
     }
-
 
     /**
      * Show the form for creating a new resource.

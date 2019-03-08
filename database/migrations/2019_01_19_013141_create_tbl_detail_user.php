@@ -16,6 +16,9 @@ class CreateTblDetailUser extends Migration
         Schema::create('tbl_detail_user', function (Blueprint $table) {
             $table->increments('id_detail_user');
             $table->integer('id_user')->lenght(11)->unsigned();
+            $table->date('tgl_lahir');
+            $table->string('phone');
+            $table->text('address');
             $table->string('nik');
             $table->integer('saldo')->lenght(20)->unsigned();
             $table->string('alamat');

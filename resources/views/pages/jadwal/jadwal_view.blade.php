@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="content">
         <div class="page-inner">
             <div class="col-md-12">
@@ -18,8 +19,14 @@
 @endsection
 @push('extras-js')
     <script src="{{ asset('assets') }}/js/plugin/fullcalendar/fullcalendar.min.js"></script>
+    <script src="{{ asset('assets') }}/js/plugin/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
@@ -58,8 +65,22 @@
                             var eventData;
                             var classRandom = className[Math.floor(Math.random()*className.length)];
                             event_title = $('#input-field').val();
-
+                            var tgl = new Date(start);
+                            var formated = moment(tgl).format('YYYY-MM-DD');
                             if (event_title) {
+                                $.ajax({
+                                    type:'POST',
+                                    url:'/jadwal',
+                                    data:{
+                                        'title':event_title,
+                                        'start':formated,
+                                        'className':classRandom,
+                                        'end':formated
+                                    },
+                                    success:function(data){
+                                        console.log(data);
+                                    }
+                                })
                                 eventData = {
                                     title: event_title,
                                     start: start,
@@ -143,3 +164,5 @@
         })
     </script>
 @endpush
+
+

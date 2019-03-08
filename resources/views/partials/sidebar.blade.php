@@ -38,11 +38,10 @@
             </div>
             <ul class="nav nav-secondary">
                 <li class="nav-item">
-                    <a href="{{ url('/') }}">
+                    <a href="{{ url('/dashboard') }}">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
-
                 </li>
                 <li class="nav-section">
 							<span class="sidebar-mini-icon">
