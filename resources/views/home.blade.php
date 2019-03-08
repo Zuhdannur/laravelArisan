@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/css/custom.css">
     <script src="{{ asset('assets') }}/js/plugin/webfont/webfont.min.js"></script>
     <script>
         WebFont.load({
@@ -61,7 +62,9 @@
             <div class="mr-auto p-1 w-100">
                 <p class="display-4 text-white">Siku app</p>
                 <p class="lead text-gray">
-                    <small class="text-muted">Dapat Kan Kemudahan Dengan Siku App Aplikasi Yang Dapat Mempermudah Hidup Anda</small>
+                    <small class="text-muted">Dapat Kan Kemudahan Dengan Siku App Aplikasi Yang Dapat Mempermudah Hidup
+                        Anda
+                    </small>
                 </p>
                 <a style="padding: 2%;" class="btn btn-success" href="{{ route('login') }}">&nbsp<span
                             class="btn-label">GET MY FREE ACCOUNT</span>&nbsp;&nbsp;<i
@@ -69,25 +72,30 @@
                 </a>
             </div>
             <div class="p-0">
-                <img src="{{ asset('assets') }}/image/background.png" class="img-fluid" width="70%" alt="Responsive image">
+                <img src="{{ asset('assets') }}/image/background.png" class="img-fluid" width="70%"
+                     alt="Responsive image">
             </div>
         </div>
     </div>
 </div>
+<div class="p-3 mb-2 bg-gradient-success">
+    <p class="lead text-center ">Melakukan Menejemen Yang tepat serta cepat dengan perhitungan komputasi </p>
+</div>
 <div class="container-fluid">
-    <div class="d-flex justify-content-center">
-        <div>
-            <h4 class="display-4 border-bottom border-secondary text-center">How It Works</h4>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center mb-2">
-        <div class="mt-5">
+    <div class="row mt-2 mb-4">
+        <div class="col-lg-6 text-right pt-3">
             <img src="{{ asset('assets') }}/image/1SIKU.png" alt="Responsive image" class="img-fluid" width="50%">
         </div>
-        <div class="mt-5">
-            <p class="title">Download Siku APP on</p>
+        <div class="col-lg-4 mt-lg-3">
+            <p class="display-4">See Your Shop Easier Using Our Android App</p>
+            <br>
+            <img src="{{ asset('assets') }}/image/gp.png" alt="Responsive image" class="img-fluid" width="50%">
         </div>
     </div>
 </div>
+<footer class="container p-lg-5 bg-grey1">
+    <p class="float-right">SIKU</p>
+    <p>© 2017-2018 Company, Inc. · </p>
+</footer>
 </body>
 </html>
