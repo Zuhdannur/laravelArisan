@@ -21,20 +21,18 @@
         });
     </script>
     <!-- CSS Files -->
+    <style>
+        .redClass{
+            background-color: red;
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('assets') }}/css/millenium.min.css">
 </head>
 <body>
     <div class="wrapper">
-
-    @include('partials.nav')
-    @php
-    $value = Auth::user()->type;
-    @endphp
-    @include('partials.sidebar')
-    <div class="main-panel">
         @yield('content')
-    </div>
+
     </div>
     <script src="{{ asset('assets') }}/js/core/jquery.3.2.1.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>

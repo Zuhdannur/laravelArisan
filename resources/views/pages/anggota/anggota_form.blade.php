@@ -14,19 +14,19 @@
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/barang') }}">Barang</a>
+                        <a href="{{ url('/anggota') }}">Anggota</a>
                     </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ url('/barang') }}">Daftar Pendapatan</a>
+                        <a href="{{ url('/anggota') }}">Daftar Anggota</a>
                     </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('barang.create') }}">Tambah Barang</a>
+                        <a href="{{ route('anggota.create') }}">Tambah Barang</a>
                     </li>
                 </ul>
             </div>
@@ -35,24 +35,29 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex">
-                                <div class="p-2"><h4 class="card-title">Tambah</h4></div>
+                                <div class="p-2"><h4 class="card-title">{{ $form }}</h4></div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('barang.store') }}" method="post">
-                                @csrf
+                                @if($form == "add")
+                                     <form action="{{ route('anggota.store') }}" method="post">
+                                @else
+                                    <form action="{{ url('/anggota/data/edit/'.@$result->id_anggota)  }} " method="post">
+                                        @endif
+                                    @csrf
                                 <div class="d-flex justify-content-between">
+
                                     <div class="col-md-12">
                                         <div class="form-group row">
-                                                {{ Form::label('lbl_barang','Nama Barang',['class'=>'col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-left']) }}
+                                                {{ Form::label('nm_anggota','Nama Angggota',['class'=>'col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-left']) }}
                                                 <div class="col-lg-5 col-md-9 col-sm-8">
-                                                    {{ Form::text('nama_barang',@$result->nama_barang,['class'=>'form-control','required']) }}
+                                                    {{ Form::text('nama_anggota',@$result->nama_anggota,['class'=>'form-control','required']) }}
                                                 </div>
                                         </div>
                                         <div class="form-group row">
-                                            {{ Form::label('lbl_harga','Harga Barang',['class'=>'col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-left']) }}
+                                            {{ Form::label('lbl_harga','alamat',['class'=>'col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-left']) }}
                                             <div class="col-lg-3 col-md-9 col-sm-8">
-                                                {{ Form::number('harga',@$result->harga,['class'=>'form-control','required']) }}
+                                                {{ Form::text('alamat',@$result->alamat,['class'=>'form-control','required']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -74,6 +79,7 @@
     <script src="{{ asset('assets') }}/js/plugin/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function () {
+
         });
     </script>
 @endpush
